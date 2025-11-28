@@ -12,8 +12,8 @@ export const routes = createHashRouter(
       Component: App,
       children: [
         { path: "/", Component: Inicio },
-        { path: "personajes", Component: Personajes },
-        { path: "planetas", Component: Planetas },
+        { path: "/personajes", Component: Personajes },
+        { path: "/planetas", Component: Planetas },
         { path: "*", Component: pagina404 },
       ],
     },
