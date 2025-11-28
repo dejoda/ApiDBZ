@@ -4,6 +4,7 @@ import { DragonBallService } from "../services/DragonBallServices";
 import type { ipersonajes } from "../model/ipersonajes";
 import Icons from "../components/icons";
 import ScrollReveal from "scrollreveal";
+import { useNavigate } from "react-router";
 
 const Inicio = () => {
 
@@ -47,6 +48,9 @@ const Inicio = () => {
    * useEffect – ScrollReveal
    * ----------------------------------------------------- */
  useEffect(() => {
+  // Run ScrollReveal only after personajes have been rendered
+  if (!personajes || personajes.length === 0) return;
+
   const sr = ScrollReveal({
     distance: "65px",
     duration: 1000,
@@ -54,14 +58,29 @@ const Inicio = () => {
     reset: false,
   });
 
-  sr.reveal(".hero-text", { delay: 200, origin: "top" });
-  sr.reveal(".hero-img", { delay: 450, origin: "top" });
-});
+  // small delay to ensure DOM paint
+  const id = window.setTimeout(() => {
+    try {
+      sr.reveal(".hero-text", { delay: 200, origin: "top" });
+      sr.reveal(".hero-img", { delay: 450, origin: "top" });
+    } catch (e) {
+      // ignore if reveal fails
+      // console.warn('ScrollReveal failed', e);
+    }
+  }, 60);
+
+  return () => {
+    window.clearTimeout(id);
+    if (sr && typeof sr.destroy === "function") sr.destroy();
+  };
+}, [personajes]);
 
 
   /* -----------------------------------------------------
    * Render
    * ----------------------------------------------------- */
+  const navigate = useNavigate();
+
   return (
     <>
       {personajes.map((per) => (
@@ -72,7 +91,9 @@ const Inicio = () => {
             <h1>{per.name}</h1>
             <p>{per.description}</p>
 
-            <a href="#">Ver Mas</a>
+            <button className="ver-mas-btn" onClick={() => navigate(`/personajes/perfil/${per.id}`)} aria-label={`Ver más ${per.name}`}>
+              Ver Mas
+            </button>
             <a href="#" className="ctaa">
               <i className="ri-play-fill"></i>Watch Gameplay
             </a>

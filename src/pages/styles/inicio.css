@@ -67,6 +67,23 @@ section {
   transition: all 0.55s ease;
 }
 
+/* Button variant used in Inicio to navigate (programmatic navigate) */
+.hero-text .ver-mas-btn{
+  display: inline-block;
+  color: white;
+  background: #670fb9;
+  border: 1px solid transparent;
+  padding: 12px 30px;
+  line-height: 1.4;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 30px;
+  text-transform: uppercase;
+  transition: all 0.55s ease;
+}
+
+.hero-text .ver-mas-btn:hover{background: transparent;border:1px solid white;transform:translateX(8px)}
+
 .hero-text a:hover {
   background: transparent;
   border: 1px solid white;

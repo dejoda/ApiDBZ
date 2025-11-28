@@ -16,9 +16,9 @@ const Header = () => {
   //
   return (
     <header>
-      <a href="#" className="logo">
+      <Link to={''} className="logo">
         <h3>DragonBall</h3>
-      </a>
+      </Link>
       <ul className={getNavClasses()}>
         <li>
           <Link to={''}>Inicio</Link>

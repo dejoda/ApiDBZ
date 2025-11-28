@@ -12,4 +12,9 @@ export class DragonBallService {
     const response = await axios.get(`${URL}/characters?page=${page}`);
     return response.data.items || [];
   }
+
+  async getPersonajeFull(id = 1) {
+    const { data } = await axios.get(`${URL}/characters/${id}`);
+    return data;
+  }
 }

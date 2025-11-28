@@ -7,6 +7,7 @@ import ScrollReveal from "scrollreveal";
 import Buscador from "../components/buscador";
 import PaginacionGrande from "../components/paginaciongrande";
 import PaginacionCompacta from "../components/paginacioncompacta";
+import { Link } from "react-router";
 
 const Personajes = () => {
 
@@ -108,7 +109,7 @@ const Personajes = () => {
                     <p><strong>Afiliación:</strong> {per.affiliation || "—"}</p>
                   </div>
 
-                  <button className="btn-modern">Ver más</button>
+                 <Link to={`/personajes/perfil/${per.id}`}><button className="btn-modern">Ver más</button></Link> 
                 </div>
               </article>
             );

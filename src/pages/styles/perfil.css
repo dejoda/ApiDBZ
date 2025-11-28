@@ -1,0 +1,229 @@
+:root{
+  --bg-1: #00111c;
+  --bg-2: #000610;
+  --accent: #00eaff;
+  --accent-2: #7b2aff;
+  --glass: rgba(255,255,255,0.06);
+
+  --card-width: 380px;
+  --card-gap: 26px;
+  --card-radius: 16px;
+  --carousel-image-height: clamp(36vh, 56vh, 72vh); /* responsive height for transform images */
+}
+
+.perfil-page{
+  min-height:100vh;
+  width:100%;
+  padding:110px 0 50px;
+  position:relative;
+  z-index:1;
+  overflow-x:hidden;
+  background: radial-gradient(circle at 25% 20%, #5f0aaf, var(--bg-1) 40%, var(--bg-2) 50%, #3b1c42);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.perfil-page::before,
+.perfil-page::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  padding:140px 0 50px;
+}
+
+.perfil-page::before{
+  background:
+    repeating-linear-gradient(90deg, rgba(0,255,255,0.04) 0 1px, transparent 1px 75px),
+    repeating-linear-gradient(0deg, rgba(0,255,255,0.03) 0 1px, transparent 1px 75px);
+  opacity:.18;
+}
+
+.perfil-page::after{
+  background: radial-gradient(circle at 50% 50%, rgba(0,255,255,0.12), rgba(0,255,255,0.04) 40%, transparent 90%);
+  filter: blur(30px);
+  mix-blend-mode:screen;
+}
+
+.perfil-container{
+  width:92%;
+  max-width:1200px;
+  margin:0 auto;
+  position:relative;
+  z-index:10;
+  animation: aparecerSuave .6s ease forwards;
+  padding:28px 32px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  color:#eaffff;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+.perfil-container h1{font-size:2.4rem;margin:0;color:#fff;text-shadow:0 6px 22px rgba(0,0,0,0.6);letter-spacing:0.6px}
+.perfil-container h2{margin:8px 0 6px;color:rgba(235,255,255,0.95);font-weight:600}
+
+.perfil-container img{display:block;margin:6px 0;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,0.45);}
+
+.perfil-container ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:12px}
+.perfil-container ul li{background:rgba(255,255,255,0.03);padding:10px 12px;border-radius:12px;border:1px solid rgba(0,234,255,0.06);backdrop-filter:blur(6px);}
+
+.perfil-container p{color:rgba(220,250,255,0.92);line-height:1.5}
+
+.transformaciones{display:flex;flex-wrap:wrap;gap:16px}
+.transform-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(0,255,255,0.06);width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:12px;margin:0}
+.transform-card img{width:100%;height:auto;max-height:calc(var(--carousel-image-height));object-fit:contain;border-radius:10px}
+.transform-card.modern img{width:100%;height:auto;max-height:calc(var(--carousel-image-height));object-fit:contain;border-radius:10px}
+
+/* .btn-volver removed from the layout - button eliminated per design */
+
+/* Tabs */
+.perfil-tabs{display:flex;gap:8px;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px 6px;justify-content:flex-start;scrollbar-width:none}
+.perfil-tabs::-webkit-scrollbar{display:none}
+.tab-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:rgba(230,255,255,0.9);padding:8px 14px;border-radius:12px;cursor:pointer;font-weight:700;transition:all .22s;flex:0 0 auto;white-space:nowrap}
+.tab-btn.active{background:linear-gradient(90deg,var(--accent),#6bdfff);color:#00121a;border:0;box-shadow:0 8px 30px rgba(0,0,0,0.35)}
+
+/* Grid */
+.perfil-grid{display:grid;grid-template-columns:320px minmax(360px,1fr);gap:32px;align-items:start}
+.perfil-left{display:flex;flex-direction:column;gap:18px;padding-right:6px}
+.avatar-wrap{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;border:1px solid rgba(0,255,255,0.06);display:flex;align-items:center;justify-content:center}
+.avatar{width:100%;max-width:280px;height:auto;object-fit:contain}
+.stats-card{background:rgba(255,255,255,0.03);padding:12px;border-radius:12px}
+.stat-row{display:flex;flex-direction:column;gap:8px}
+.stat-label{color:rgba(220,255,255,0.85);font-weight:800}
+.stat-bar{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+.stat-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px}
+.stat-fill{transition:width .7s cubic-bezier(.22,.9,.35,1)}
+.stat-value{font-size:0.85rem;color:rgba(200,255,255,0.9)}
+
+/* Glass cards */
+.glass-card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(0,255,255,0.06);box-shadow:0 12px 40px rgba(0,0,0,0.35)}
+.tab-panel{min-height:120px}
+
+.planet-inner{display:flex;flex-direction:column;gap:16px;align-items:center}
+.planet-inner img{width:100%;max-width:720px;border-radius:12px;object-fit:contain;max-height:36vh;box-shadow:0 14px 40px rgba(0,0,0,0.45)}
+.planet-info{flex:1;min-width:0;width:100%;margin-top:6px;text-align:left}
+
+.perfil-right{min-width:0;padding-left:6px}
+
+.transform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.transform-card.modern{padding:12px}
+
+/* Carousel styles */
+.carousel{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:18px 0;overflow:visible}
+.carousel-viewport{overflow:hidden;flex:0 0 auto;max-width:760px;width:100%;height:calc(var(--carousel-image-height) + 120px)}
+.carousel-track{display:flex;transition:transform .45s cubic-bezier(.22,.9,.35,1);align-items:center}
+.carousel-item{min-width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:6px}
+.carousel .transform-card{max-width:720px;width:100%;padding:12px 10px;background:linear-gradient(180deg, rgba(8,18,24,0.55), rgba(6,12,18,0.28));border:1px solid rgba(255,255,255,0.03);position:relative;overflow:visible;border-radius:14px;box-shadow:0 18px 48px rgba(2,10,18,0.6)}
+
+/* Make image use viewport height so full character is visible */
+.transform-img-full{width:auto;max-width:100%;height:auto;max-height:calc(var(--carousel-image-height));object-fit:contain;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));box-shadow:inset 0 -36px 90px rgba(0,0,0,0.22), 0 30px 120px rgba(0,0,0,0.65);transform-origin:center center}
+
+/* show info below image and remove overlay to keep image fully visible */
+.transform-caption{display:none}
+.carousel .transform-body{display:flex;flex-direction:column;padding:14px 18px;color:#fff;gap:8px;align-items:center;text-align:center}
+.carousel .transform-body h4{margin:0;font-size:1.15rem;font-weight:900;letter-spacing:0.4px}
+.carousel .transform-body p{margin:0;opacity:0.95;color:rgba(220,255,255,0.9)}
+
+/* No-transform message */
+.no-transforms{display:flex;align-items:center;justify-content:center;padding:40px 20px;color:rgba(230,255,255,0.92);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+.no-transforms p{margin:0;font-weight:700;font-size:1.05rem}
+
+/* hover animation removed for carousel cards */
+
+/* Modal / lightbox */
+/* Image modal removed - modal markup deleted from component */
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.04);color:var(--accent-2);border:1px solid rgba(255,255,255,0.08);width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:60;backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(2,8,20,0.6);transition:transform .16s ease, box-shadow .16s ease}
+.carousel-btn.left{left:-18px}
+.carousel-btn.right{right:-18px}
+.carousel-btn svg{display:block;color:currentColor}
+.carousel-btn:hover{transform:translateY(-50%) scale(1.08);box-shadow:0 20px 50px rgba(2,8,20,0.7)}
+.carousel-dots{display:flex;gap:10px;margin-top:14px}
+.dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.03);cursor:pointer;box-shadow:0 6px 18px rgba(2,10,18,0.45)}
+.dot.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 18px 44px rgba(11,32,48,0.6);border:0}
+
+@media (max-width:980px){
+  .carousel-viewport{max-width:720px}
+  .carousel .transform-card{max-width:620px;padding:10px}
+  .transform-img-full{max-height:56vh}
+}
+
+@media (max-width:700px){
+  .transform-img-full{max-height:56vh}
+  .carousel-btn{width:40px;height:40px;right:-12px;left:auto}
+}
+
+/* Responsive overrides to ensure consistent carousel behavior on narrow screens */
+@media (max-width:980px){
+  :root{ --carousel-image-height: clamp(32vh, 48vh, 60vh); }
+  .carousel-viewport{height:calc(var(--carousel-image-height) + 110px)}
+  .carousel .transform-card{max-width:620px;padding:10px}
+  .transform-img-full{max-height:calc(var(--carousel-image-height))}
+}
+
+@media (max-width:700px){
+  :root{ --carousel-image-height: 46vh; }
+  .carousel-viewport{height:calc(var(--carousel-image-height) + 88px)}
+  .perfil-container{padding:10px}
+  .perfil-container h1{font-size:1.35rem}
+  .transform-card{width:100%}
+  .avatar{max-width:220px}
+}
+
+/* Hide the volver button on smaller devices to reduce clutter */
+@media (max-width:700px){
+  .btn-volver{display:none !important}
+}
+
+@media (max-width:980px){
+  .perfil-grid{grid-template-columns:1fr;}
+  .perfil-left{order:2}
+  .perfil-right{order:1}
+  .planet-inner{flex-direction:column}
+  .avatar{max-width:320px}
+}
+
+@media (max-width:700px){
+  .perfil-container{padding:12px}
+  .perfil-container h1{font-size:1.5rem}
+  .transform-card{width:48%}
+}
+@media (max-width:420px){
+  .transform-card{width:100%}
+}
+
+/* Extra-small screens: soporte para anchos menores a 320px */
+@media (max-width:320px){
+  :root{ --carousel-image-height: 40vh; }
+  .perfil-container{padding:8px}
+  .perfil-container h1{font-size:1.15rem}
+  .perfil-container h2{font-size:0.98rem}
+
+  /* Tabs: reducir padding para que no se oculten y mantener scroll */
+  .perfil-tabs{gap:6px;padding:6px 4px}
+  .tab-btn{padding:6px 10px;font-size:0.82rem;border-radius:10px}
+
+  /* Grid / avatar */
+  .perfil-grid{grid-template-columns:1fr}
+  .perfil-left{order:2;padding-right:0}
+  .perfil-right{order:1;padding-left:0}
+  .avatar{max-width:180px}
+
+  /* Carousel compact */
+  .carousel-viewport{height:calc(var(--carousel-image-height) + 72px)}
+  .carousel-btn{width:32px;height:32px}
+  .dot{width:10px;height:10px}
+
+  /* Chips & cards */
+  .chip{padding:6px 8px;font-size:0.78rem}
+  .glass-card{padding:12px}
+  .transform-card{padding:10px}
+
+  /* Planet image smaller to fit narrow screens */
+  .planet-inner img{max-width:260px;max-height:30vh}
+}
+
+@keyframes aparecerSuave{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+html,body{margin:0;padding:0;color:#dff}
+/* end of perfil styles */

@@ -1,18 +1,23 @@
 
+/* Shared styles for both scroll buttons */
+.scroll-up,
 .scroll-down {
   position: fixed;
-  bottom: 6%;
   right: 3.5%;
   z-index: 9999;
   pointer-events: auto;
 }
 
+/* place up above the down button */
+.scroll-up { bottom: 12%; }
+.scroll-down { bottom: 6%; }
+
+.scroll-up i,
 .scroll-down i {
   display: block;
   padding: 12px;
   font-size: 25px;
   color: #000000 !important;
-  /* Fondo blanco para el botón, icono oscuro para contraste */
   background: #ffffff;
   border-radius: 30px;
   transition: transform 0.28s ease, box-shadow 0.28s ease, background-position 0.8s ease;
@@ -20,11 +25,13 @@
   border: 1px solid rgba(0,0,0,0.06);
 }
 
+.scroll-up i:hover,
 .scroll-down i:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 10px 22px rgba(0,0,0,0.12);
 }
 
+.scroll-up a:focus, .scroll-up a:focus-visible,
 .scroll-down a:focus, .scroll-down a:focus-visible {
   outline: none;
   box-shadow: 0 0 0 6px rgba(0,0,0,0.06);
@@ -36,6 +43,7 @@
 
 /* Ajustes de scroll según resoluciones */
 @media (max-width: 1535px) {
+  .scroll-up,
   .scroll-down {
     right: 3%;
     transition: 0.2s;
@@ -43,6 +51,7 @@
 }
 
 @media (max-width: 1195px) {
+  .scroll-up,
   .scroll-down {
     display: none;
   }
