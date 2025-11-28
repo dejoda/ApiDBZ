@@ -1,7 +1,7 @@
 #Pantalla #Inicio
-<img width="1892" height="927" alt="image" src="https://github.com/user-attachments/assets/87f9b3de-cb09-45d4-ae51-f9137f078310" />
+<img width="1887" height="916" alt="image" src="https://github.com/user-attachments/assets/612f9842-df90-4817-b821-fbf7674ce15c" />
 #Pantalla #Personajes
-<img width="1889" height="924" alt="image" src="https://github.com/user-attachments/assets/48f07e61-35d5-4fee-a40c-c457d82fa08e" />
+<img width="1896" height="923" alt="image" src="https://github.com/user-attachments/assets/a25b63b8-90e1-4733-943f-d87ba6d782aa" />
 #Perfil #Perfil Goku
 <img width="1880" height="922" alt="image" src="https://github.com/user-attachments/assets/9599418c-c55e-47c7-9795-f04a4a94c103" />
 #Perfil Transformaciones
