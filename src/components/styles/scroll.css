@@ -1,0 +1,65 @@
+
+.scroll-down {
+  position: fixed;
+  bottom: 6%;
+  right: 3.5%;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.scroll-down i {
+  display: block;
+  padding: 12px;
+  font-size: 25px;
+  color: #000000 !important;
+  /* Fondo blanco para el botón, icono oscuro para contraste */
+  background: #ffffff;
+  border-radius: 30px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background-position 0.8s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.scroll-down i:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+}
+
+.scroll-down a:focus, .scroll-down a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 6px rgba(0,0,0,0.06);
+  border-radius: 30px;
+}
+
+
+
+
+/* Ajustes de scroll según resoluciones */
+@media (max-width: 1535px) {
+  .scroll-down {
+    right: 3%;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1195px) {
+  .scroll-down {
+    display: none;
+  }
+}
+
+@media (max-width: 990px) {
+  .navlist {
+    height: 40vh; /* Altura que controla área de scroll al abrir menú */
+    overflow-y: auto; /* scroll interno si excede */
+  }
+}
+
+/* Asegurar contraste del icono si se usa fuente o SVG */
+.scroll-down a, .scroll-down i {
+  display: inline-block;
+  line-height: 1;
+}
+.scroll-down i { color: #000000 !important; }
+/* Si hay SVG fallback, asegurar que el path sea negro */
+.scroll-down svg path { fill: #000000; }

@@ -1,0 +1,23 @@
+:root{
+  --bg-1: #00111c;
+  --bg-2: #000610;
+  --accent: #00eaff;
+  --accent-2: #7b2aff;
+  --glass: rgba(255,255,255,0.06);
+
+  --card-width: 350px;
+  --card-gap: 26px;
+  --card-radius: 26px;
+}
+.planeta-page{
+  min-height:100vh;
+  width:100%;
+  padding:110px 0 50px;
+  position:relative;
+  z-index:1;
+  overflow-x:hidden;
+    background: radial-gradient(circle at 25% 20%, #5f0aaf, var(--bg-1) 40%, var(--bg-2) 50%, #3b1c42);
+    background-repeat: no-repeat;
+    background-size: cover;
+    --card-gap: 32px;
+}

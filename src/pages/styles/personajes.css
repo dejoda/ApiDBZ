@@ -1,0 +1,149 @@
+
+:root{
+  --bg-1: #00111c;
+  --bg-2: #000610;
+  --accent: #00eaff;
+  --accent-2: #7b2aff;
+  --glass: rgba(255,255,255,0.06);
+
+  --card-width: 350px;
+  --card-gap: 26px;
+  --card-radius: 26px;
+}
+
+.personajes-page{
+  min-height:100vh;
+  width:100%;
+  padding:110px 0 50px;
+  position:relative;
+  z-index:1;
+  overflow-x:hidden;
+    background: radial-gradient(circle at 25% 20%, #5f0aaf, var(--bg-1) 40%, var(--bg-2) 50%, #3b1c42);
+    background-repeat: no-repeat;
+    background-size: cover;
+    --card-gap: 32px;
+}
+
+.personajes-page::before,
+.personajes-page::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+    padding:140px 0 50px;
+}
+
+.personajes-page::before{
+  background:
+    repeating-linear-gradient(90deg, rgba(0,255,255,0.04) 0 1px, transparent 1px 75px),
+    repeating-linear-gradient(0deg, rgba(0,255,255,0.03) 0 1px, transparent 1px 75px);
+  opacity:.22;
+  animation: gridFlicker 6s ease-in-out infinite alternate;
+}
+
+.personajes-page::after{
+  background: radial-gradient(circle at 50% 50%, rgba(0,255,255,0.18), rgba(0,255,255,0.06) 40%, transparent 90%);
+  filter: blur(30px);
+  mix-blend-mode:screen;
+  animation: hologlowStable 4s ease-in-out infinite alternate;
+}
+  .Introduccion{width:92%;max-width:1280px;margin:0 auto 24px;padding:14px 6px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+
+@keyframes gridFlicker{0%{opacity:.25}100%{opacity:.15}}
+@keyframes hologlowStable{0%{opacity:.25}100%{opacity:.45}}
+
+.personajes-inner{
+  width:92%;
+  max-width:1280px;
+  margin:0 auto;
+  position:relative;
+  z-index:10;
+  animation: aparecerSuave .8s ease forwards;
+    padding:14px 6px; 
+}
+
+.Introduccion{width:92%;max-width:1280px;margin:0 auto 18px;padding:12px 6px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.Introduccion h1{font-size:1.5rem;margin:0;color:#eaffff;font-weight:900;letter-spacing:0.2px;text-shadow:0 2px 10px rgba(0,0,0,0.5)}
+  .pagination{display:flex;gap:22px;justify-content:center;align-items:center;margin-top:48px;color:var(--accent);font-weight:700}
+.Introduccion .intro-text{margin:0;color:rgba(235,255,255,0.82);font-size:0.98rem;max-width:1100px}
+
+@media (max-width:700px){
+  .Introduccion{padding:10px 6px}
+  .Introduccion h1{font-size:1.25rem}
+  .Introduccion .intro-text{font-size:0.95rem}
+}
+.cards-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, var(--card-width));
+  gap:var(--card-gap);
+  justify-content:center; 
+  padding:10px 6px; 
+  min-height: 420px; 
+}
+
+.card-modern{
+  width:100%;
+  max-width:var(--card-width);
+  border-radius:var(--card-radius);
+  overflow:hidden;
+  position:relative;
+  display:flex;flex-direction:column;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border:2px solid rgba(0,255,255,0.12);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  transition: transform .35s, box-shadow .35s, border .35s;
+}
+.card-modern:hover{transform:translateY(-8px) scale(1.02);border-color:rgba(0,234,255,0.7);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 10px rgba(0,234,255,0.14),
+    0 0 22px rgba(123,42,255,0.12),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.card-modern::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;pointer-events:none;background:conic-gradient(from 0deg,#00ffff,#00bbff,#4b50ff,#a931ff,#ff00cc,#ffaa00,#00ffff);opacity:.14;filter:blur(18px);animation: rgbBorder 12s linear infinite;transition:opacity .35s,filter .35s,transform .35s}
+
+.card-modern:hover::before{opacity:0.32;filter:blur(10px) saturate(140%);transform:scale(1.02)}
+@keyframes rgbBorder{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.card-modern > *{position:relative;z-index:2}
+
+.card-modern-img{
+  position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;height:300px;border-bottom:1px solid rgba(0,255,255,0.08);
+  background-size:cover;background-position:center;
+}
+.card-modern-img::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 100%);pointer-events:none}
+
+.card-modern-img img{
+  position:relative;z-index:2;max-width:70%;height:90%;width:auto;object-fit:contain;object-position:50% 25%;transition:transform .45s ease,filter .35s ease;filter:saturate(1.2) contrast(1.05)
+}
+.card-modern:hover .card-modern-img img{transform:scale(1.08);filter:saturate(1.45) contrast(1.1)}
+
+.card-modern-body{padding:20px;display:flex;flex-direction:column;gap:12px}
+.card-title{font-size:1.25rem;font-weight:900;margin:0;color:#eaffff;text-shadow:0 0 4px rgba(0,255,255,.45)}
+
+.card-tags{display:flex;gap:10px;flex-wrap:wrap}
+.card-tags span{background:rgba(0,255,255,0.06);color:#b6ffff;padding:6px 12px;border-radius:14px;font-weight:700;border:1px solid rgba(0,255,255,0.18);backdrop-filter:blur(6px)}
+
+.card-info{color:#c7faff;font-size:.95rem;line-height:1.4}
+.card-info strong{color:var(--accent);text-shadow:0 0 6px rgba(0,255,255,.3)}
+
+.btn-modern{display:inline-block;margin-top:14px;padding:10px 26px;border-radius:28px;font-weight:800;letter-spacing:.6px;border:0;cursor:pointer;background:linear-gradient(90deg,var(--accent),#0077ff,var(--accent-2));background-size:200% 200%;color:#fff;transition:transform .25s,box-shadow .25s,background-position .8s}
+.btn-modern:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(0,234,255,.25);background-position:100% 0}
+
+html,body{margin:0;padding:0;color:#dff;}
+
+html,body,.personajes-page{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0}
+
+@media (max-width:700px){
+  .search-box.modern{width:100%;max-width:100%}
+  .search-wrapper{flex-direction:column;align-items:flex-start;gap:8px}
+  .controls-inner{flex-direction:column;align-items:stretch;padding:0 10px}
+  .search-left{order:1}
+}
+@media (max-width:420px){
+  :root{--card-width:100%}
+  .cards-grid{grid-template-columns:1fr;padding:20px}
+  .card-modern-img{height:250px}
+}

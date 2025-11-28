@@ -1,0 +1,223 @@
+/* ==========================
+   SEARCH (MODERNO)
+   ========================== */
+
+/* Wrapper general del buscador */
+.search-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  width: 100%;
+  padding: 0 6px;
+}
+
+/* Texto oculto accesible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Contenedor interno (incluye buscador + pagination compacta) */
+.controls-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.search-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-left .search-box.modern {
+  width: 480px;
+  max-width: 100%;
+}
+
+/* ==========================
+   CAJA DEL BUSCADOR
+   ========================== */
+.search-box.modern {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  width: 460px;
+  max-width: 92%;
+  height: 52px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(3,18,30,0.6), rgba(3,18,30,0.55));
+  border: 1px solid rgba(20,180,200,0.08);
+  box-shadow: 0 10px 30px rgba(2,8,14,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(6px) saturate(120%);
+  transition: box-shadow .18s ease, transform .12s ease, border-color .15s ease, background .15s ease;
+}
+
+/* Efecto al hacer focus */
+.search-box.modern:focus-within {
+  border-color: rgba(0,234,255,0.18);
+  box-shadow: 0 8px 30px rgba(3,19,26,0.6), 0 0 24px rgba(0,234,255,0.08);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Icono de búsqueda */
+.search-icon {
+  font-size: 1.15rem;
+  margin-left: 6px;
+  color: var(--accent);
+}
+
+/* Input */
+.search-box.modern input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  color: #eaffff;
+  font-size: 1rem;
+  padding: 6px 48px 6px 8px;
+}
+
+.search-box.modern input::placeholder {
+  color: rgba(235,255,255,0.5);
+}
+
+/* Botón CLEAR */
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 0;
+  color: #e6ffff;
+  padding: 6px;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.search-clear:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: var(--accent);
+}
+
+/* Micro animación */
+@keyframes pulseAccent {
+  0% { box-shadow: 0 0 0 rgba(0,234,255,0); }
+  50% { box-shadow: 0 0 18px rgba(0,234,255,0.06); }
+  100% { box-shadow: 0 0 0 rgba(0,234,255,0); }
+}
+
+.search-box.modern:focus-within {
+  animation: pulseAccent .9s ease-in-out;
+}
+
+/* ==========================
+   PAGINACIÓN COMPACTA (junto al buscador)
+   ========================== */
+.compact-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cp-btn {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent), #0077ff);
+  color: #03131a;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform .12s ease, opacity .12s;
+}
+
+.cp-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cp-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.cp-info {
+  color: rgba(230,255,255,0.9);
+  font-weight: 700;
+  padding: 0 6px;
+}
+
+/* ==========================
+   RESPONSIVE
+   ========================== */
+@media (max-width:700px) {
+  .search-box.modern {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .search-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .controls-inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 10px;
+  }
+
+  .search-left {
+    order: 1;
+  }
+
+  .compact-pagination {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 8px;
+    order: 2;
+  }
+
+  .cp-btn {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .cp-info {
+    padding: 0 8px;
+    font-weight: 700;
+  }
+}

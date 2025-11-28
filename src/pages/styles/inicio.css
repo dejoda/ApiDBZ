@@ -1,0 +1,282 @@
+
+
+:root{
+  --bg-1: #00111c;
+  --bg-2: #000610;
+  --accent: #00eaff;
+  --accent-2: #7b2aff;
+  --glass: rgba(255,255,255,0.06);
+
+  --card-width: 350px;
+  --card-gap: 26px;
+  --card-radius: 26px;
+}
+
+
+section {
+  padding: 0 18%;
+}
+
+.hero-text h5 {
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero-text h1 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 70px;
+  line-height: 1;
+  color: white;
+  margin: 0 0 45px;
+}
+
+.hero-text h4 {
+  font-size: 18px;
+  font-weight: 600px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.hero-text p {
+  color: white;
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 40px;
+  text-align: justify;
+}
+
+.hero-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-text a {
+  display: inline-block;
+  color: white;
+  background: #670fb9;
+  border: 1px solid transparent;
+  padding: 12px 30px;
+  line-height: 1.4;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 30px;
+  text-transform: uppercase;
+  transition: all 0.55s ease;
+}
+
+.hero-text a:hover {
+  background: transparent;
+  border: 1px solid white;
+  transform: translateX(8px);
+}
+
+.hero-text a.ctaa {
+  background: transparent;
+  border: 1px solid white;
+  margin-left: 20px;
+}
+
+.hero-text a.ctaa i {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+@media (max-width: 1535px) {
+  header {
+    padding: 15px 3%;
+    transition: 0.2s;
+  }
+
+  .icons {
+    padding: 0 3%;
+    transition: 0.2s;
+  }
+
+  .scroll-down {
+    right: 3%;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1460px) {
+  section {
+    padding: 0 12%;
+    transition: 0.2s;
+  }
+}
+
+@media (max-width: 1340px) {
+  .hero-img img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-text h1 {
+    font-size: 75px;
+    margin: 0 0 30px;
+  }
+
+  .hero-text h5 {
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 1195px) {
+  section {
+    padding: 0 3%;
+    transition: 0.2s;
+  }
+  .hero-text {
+    padding-top: 115px;
+  }
+
+  .hero-img {
+    text-align: center;
+  }
+
+  .hero {
+    height: 100%;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  .icons {
+    display: none;
+  }
+
+  .scroll-down {
+    display: none;
+  }
+}
+
+@media (max-width: 990px) {
+  #menu-icon {
+    display: block;
+  }
+
+  .navlist {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 300px;
+    height: 40vh;
+    background: #cea504;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 20px;
+    transition: all 0.55s ease;
+  }
+
+  .navlist a {
+    margin-left: 0;
+    display: block;
+    margin: 7px 0;
+  }
+
+  .navlist.open {
+    right: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-img img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*------------------------------------*/
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  background-image: url("https://i.pinimg.com/originals/76/8d/85/768d8569299c97d24532ac413c6c57ac.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://i.pinimg.com/originals/76/8d/85/768d8569299c97d24532ac413c6c57ac.png");
+  background-size: cover;
+  transform: scaleX(-1);
+  filter: brightness(60%);
+  z-index: 0;
+}
+
+.hero-text,
+.hero-img {
+  position: relative;
+  z-index: 1; /* contenido encima del overlay */
+}
+
+/* Imagen hero */
+.hero-img {
+  display: flex;
+  justify-content: flex-end; /* imagen a la derecha */
+  align-items: center;
+}
+
+.hero-img .img-frame {
+  width: 100%;
+  max-width: 560px; /* tamaño máximo del marco (aumentado ligeramente) */
+  aspect-ratio: 1 / 1; /* mantiene proporción cuadrada */
+  overflow: hidden;
+  display: block;
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* conservar proporciones sin recortar */
+  display: block;
+}
+
+/* Media queries */
+@media (max-width: 1195px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .hero-text {
+    padding-top: 100px;
+    text-align: justify; /* mantiene texto a la izquierda */
+  }
+
+  .hero-img {
+    justify-content: center; /* imagen se adapta a la izquierda o derecha según diseño */
+  }
+
+  .hero-img .img-frame {
+    max-width: 480px; /* aumentar un poco para pantallas medianas */
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-text {
+    padding-top: 100px; /* deja espacio debajo del header */
+    text-align: justify; /* mantiene el texto alineado a la izquierda */
+  }
+
+  .hero-text h1 {
+    font-size: 50px;
+  }
+
+  .hero-text p {
+    font-size: 14px;
+  }
+
+  .hero-img .img-frame {
+    max-width: 360px; /* aumentar levemente en móviles */
+  }
+}

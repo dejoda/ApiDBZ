@@ -1,0 +1,167 @@
+:root {
+  --bg-1: #00111c;
+  --bg-2: #000610;
+  --accent: #00eaff;
+  --accent-2: #7b2aff;
+  --glass: rgba(255, 255, 255, 0.06);
+  --card-radius: 20px;
+}
+
+/* ===== Página 404 ===== */
+.error404-page {
+  min-height: 100vh;
+  width: 100%;
+   background: radial-gradient(circle at 25% 20%, #5f0aaf, var(--bg-1) 40%, var(--bg-2) 50%, #3b1c42);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+/* Tarjeta CENTRADA */
+.tarjeta {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--card-radius);
+  padding: 40px 50px;
+  max-width: 1000px;
+  width: 90%;
+
+  display: flex;
+  justify-content: center; /* CENTRADO */
+  align-items: center;     /* CENTRADO */
+  gap: 40px;
+
+  margin: 0 auto; /* ❤️ FIX: Centra la tarjeta en responsividad */
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(0, 174, 255, 0.15);
+}
+
+/* Imagen */
+.imagen {
+  width: 35%;
+  min-width: 260px;
+  display: flex;
+  justify-content: center;
+}
+
+.imagen img {
+  width: 100%;
+  max-width: 130px;
+  filter: drop-shadow(0 0 10px #00d2ff);
+  animation: flotar 3s ease-in-out infinite;
+  object-fit: contain;
+}
+
+/* Texto */
+.Parrafo {
+  width: 65%;
+}
+
+.Parrafo h1 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+}
+
+.Parrafo p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #d8d8d8;
+}
+
+/* Animación */
+@keyframes flotar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* ===== (≤1200px) ===== */
+@media (max-width: 1200px) {
+  main{
+    display: flex;
+  }
+  .tarjeta {
+    gap: 30px;
+    padding: 35px 40px;
+  }
+
+  .imagen {
+    width: 40%;
+  }
+
+  .imagen img {
+    max-width: 120px;
+  }
+
+  .Parrafo {
+    width: 60%;
+  }
+}
+
+/* ===== (≤1000px) — Imagen más grande sin romper card ===== */
+@media (max-width: 1000px) {
+  .tarjeta {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+  }
+
+  .Parrafo {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .imagen {
+    width: 100%;
+    height: 350px; /* <-- Aumenta espacio para crecer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imagen img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+/* ===== (≤700px) ===== */
+@media (max-width: 700px) {
+  .tarjeta {
+    padding: 22px;
+  }
+
+  .imagen img {
+    max-width: 300px;
+  }
+
+  .Parrafo h1 {
+    font-size: 1.9rem;
+  }
+}
+
+/* ===== (≤500px) ===== */
+@media (max-width: 500px) {
+  .tarjeta {
+    padding: 20px 15px;
+  }
+
+  .imagen img {
+    max-width: 230px;
+  }
+
+  .Parrafo h1 {
+    font-size: 1.6rem;
+  }
+
+  .Parrafo p {
+    font-size: 0.95rem;
+  }
+}

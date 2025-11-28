@@ -1,0 +1,66 @@
+/* ==========================
+   PAGINACIÓN COMPACTA
+   ========================== */
+.compact-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+  user-select: none;
+}
+
+.cp-btn {
+  background: rgba(0, 255, 255, 0.08);
+  color: var(--accent);
+  padding: 8px 16px;
+  font-weight: 800;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease, border 0.25s ease;
+}
+
+.cp-btn:hover {
+  background: rgba(0, 255, 255, 0.18);
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 255, 0.45);
+}
+
+.cp-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cp-info {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================
+   MEDIA QUERIES COMPACTA
+   ========================== */
+@media (max-width: 700px) {
+  .compact-pagination {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+
+  .cp-btn {
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  .cp-info {
+    padding: 0 8px;
+    font-weight: 700;
+  }
+}
