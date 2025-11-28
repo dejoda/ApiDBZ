@@ -1,3 +1,10 @@
+#Pantalla #Inicio
+<img width="1892" height="927" alt="image" src="https://github.com/user-attachments/assets/87f9b3de-cb09-45d4-ae51-f9137f078310" />
+#Pantalla #Personajes
+<img width="1889" height="924" alt="image" src="https://github.com/user-attachments/assets/48f07e61-35d5-4fee-a40c-c457d82fa08e" />
+
+#
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
