@@ -2,8 +2,14 @@
 <img width="1892" height="927" alt="image" src="https://github.com/user-attachments/assets/87f9b3de-cb09-45d4-ae51-f9137f078310" />
 #Pantalla #Personajes
 <img width="1889" height="924" alt="image" src="https://github.com/user-attachments/assets/48f07e61-35d5-4fee-a40c-c457d82fa08e" />
+#Perfil #Perfil Goku
+<img width="1880" height="922" alt="image" src="https://github.com/user-attachments/assets/9599418c-c55e-47c7-9795-f04a4a94c103" />
+#Perfil Transformaciones
+<img width="1883" height="916" alt="image" src="https://github.com/user-attachments/assets/67a54e6c-c8bc-458e-82d7-8c2435603754" />
+#Perfil Planetas
+<img width="1889" height="919" alt="image" src="https://github.com/user-attachments/assets/1848a42d-f0be-4e60-b9cf-d08d564e6143" />
 
-#
+
 
 # React + TypeScript + Vite
 
