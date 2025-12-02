@@ -17,4 +17,9 @@ export class DragonBallService {
     const { data } = await axios.get(`${URL}/characters/${id}`);
     return data;
   }
+
+  async getPlanetas(page = 1) {
+    const response = await axios.get(URL + `/planets?page=${page}&limit=20`);
+    return response.data.items;
+  }
 }

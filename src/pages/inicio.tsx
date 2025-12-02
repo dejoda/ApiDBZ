@@ -7,12 +7,12 @@ import ScrollReveal from "scrollreveal";
 import { useNavigate } from "react-router";
 
 const Inicio = () => {
-
   /* -----------------------------------------------------
    * Estados
    * ----------------------------------------------------- */
   const [personajes, setPersonajes] = useState<ipersonajes[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
 
   /* -----------------------------------------------------
    * Servicio
@@ -22,64 +22,74 @@ const Inicio = () => {
   /* -----------------------------------------------------
    * Métodos
    * ----------------------------------------------------- */
-  const getPersonajes = (pageNumber: number) => {
-    service
-      .getPersonajes(pageNumber)
-      .then((data) => setPersonajes(data))
-      .catch((err) => console.error("Error:", err));
+  const getPersonajes = async (pageNumber: number) => {
+    setLoading(true);
+    try {
+      const data = await service.getPersonajes(pageNumber);
+      setPersonajes(data);
+    } catch (err) {
+      console.error("Error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
-
-  /* -----------------------------------------------------
-   * useEffect – Obtener personajes cuando cambie la página
-   * ----------------------------------------------------- */
-  useEffect(() => {
-    getPersonajes(page);
-  }, [page]);
 
   /* -----------------------------------------------------
    * useEffect – Página aleatoria al iniciar
    * ----------------------------------------------------- */
   useEffect(() => {
-    const randomPage = Math.floor(Math.random() * 58) +1;
+    const randomPage = Math.floor(Math.random() * 58) + 1;
     setPage(randomPage);
   }, []);
 
   /* -----------------------------------------------------
-   * useEffect – ScrollReveal
+   * useEffect – Obtener personajes cuando cambie la página
    * ----------------------------------------------------- */
- useEffect(() => {
-  // Run ScrollReveal only after personajes have been rendered
-  if (!personajes || personajes.length === 0) return;
-
-  const sr = ScrollReveal({
-    distance: "65px",
-    duration: 1000,
-    delay: 450,
-    reset: false,
-  });
-
-  // small delay to ensure DOM paint
-  const id = window.setTimeout(() => {
-    try {
-      sr.reveal(".hero-text", { delay: 200, origin: "top" });
-      sr.reveal(".hero-img", { delay: 450, origin: "top" });
-    } catch (e) {
-      // ignore if reveal fails
-      // console.warn('ScrollReveal failed', e);
+  useEffect(() => {
+    if (page !== null) {
+      getPersonajes(page);
     }
-  }, 60);
+  }, [page]);
 
-  return () => {
-    window.clearTimeout(id);
-    if (sr && typeof sr.destroy === "function") sr.destroy();
-  };
-}, [personajes]);
+  /* -----------------------------------------------------
+   * useEffect – ScrollReveal (solo cuando cargó)
+   * ----------------------------------------------------- */
+  useEffect(() => {
+    if (loading || personajes.length === 0) return;
 
+    const sr = ScrollReveal({
+      distance: "65px",
+      duration: 1000,
+      delay: 450,
+      reset: false,
+    });
+
+    const id = setTimeout(() => {
+      try {
+        sr.reveal(".hero-text", { delay: 200, origin: "top" });
+        sr.reveal(".hero-img", { delay: 450, origin: "top" });
+      } catch (e) {}
+    }, 80);
+
+    return () => {
+      clearTimeout(id);
+      if (sr.destroy) sr.destroy();
+    };
+  }, [loading, personajes]);
 
   /* -----------------------------------------------------
    * Render
    * ----------------------------------------------------- */
   const navigate = useNavigate();
+
+  // Loader temporal para evitar pantalla blanca
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <p className="loading-text">Cargando personaje...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -91,9 +101,14 @@ const Inicio = () => {
             <h1>{per.name}</h1>
             <p>{per.description}</p>
 
-            <button className="ver-mas-btn" onClick={() => navigate(`/personajes/perfil/${per.id}`)} aria-label={`Ver más ${per.name}`}>
+            <button
+              className="ver-mas-btn"
+              onClick={() => navigate(`/personajes/perfil/${per.id}`)}
+              aria-label={`Ver más ${per.name}`}
+            >
               Ver Mas
             </button>
+
             <a href="#" className="ctaa">
               <i className="ri-play-fill"></i>Watch Gameplay
             </a>

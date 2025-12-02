@@ -8,6 +8,7 @@
   --card-width: 350px;
   --card-gap: 26px;
   --card-radius: 26px;
+  --banner-height: 240px;
 }
 .planeta-page{
   min-height:100vh;
@@ -21,3 +22,119 @@
     background-size: cover;
     --card-gap: 32px;
 }
+
+/* Modern banner-style planet cards */
+.planetas.list{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  display: grid;
+  gap: 22px;
+  align-items: start;
+}
+
+.banner{
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  height: var(--banner-height);
+  min-height: var(--banner-height);
+}
+
+.imagen{
+  flex: 0 0 480px;
+  height: 100%;
+  /* make images a bit larger and more prominent */
+  background-size: 98% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgba(8,6,18,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagen img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.Informacion.panel{
+  flex: 1 1 auto;
+  background: linear-gradient(180deg, rgba(24,16,34,0.96), rgba(18,13,28,0.92));
+  padding: 28px 36px;
+  display: flex;
+  align-items: center;
+}
+
+.panel-inner{ width:100%; display:flex; flex-direction:column; justify-content: space-between; height:100%; }
+
+.title{
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+}
+
+.desc{
+  margin: 0 0 18px 0;
+  color: rgba(220,220,230,0.86);
+  line-height: 1.6;
+  /* clamp to approx 3-4 lines */
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:0.85rem;
+}
+.badge.alive{ background: rgba(34,197,94,0.12); color: #9ff29a; border: 1px solid rgba(34,197,94,0.12); }
+.badge.dead{ background: rgba(255,83,73,0.08); color: #ffb4ab; border: 1px solid rgba(255,83,73,0.08); }
+
+.btn-cta{
+  margin-left: auto;
+  background: linear-gradient(90deg, #ff7a18, #ff4e50);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(255,78,80,0.12);
+}
+
+.btn-cta:hover{ transform: translateY(-3px); }
+
+/* Responsive: stack image above info on small screens */
+@media (max-width: 900px){
+  .banner{ flex-direction: column; }
+  .imagen{ flex: 0 0 auto; width:100%; height:280px; }
+  .Informacion.panel{ padding: 18px; }
+  .title{ font-size: 1.25rem; }
+}
+
+@media (max-width: 420px){
+  .imagen{ height:180px; }
+  .desc{ max-height: 5rem; }
+  .panel-inner{ padding-right: 0; }
+}
+
