@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import "./styles/planetas.css";
 import type { iplaneta } from "../model/iplaneta";
 import { DragonBallService } from "../services/DragonBallServices";
+import Buscador from "../components/buscador";
 
 const Planetas = () => {
   const [planetas, setPlanetas] = useState<iplaneta[]>([]);
   const service = new DragonBallService();
-
+  const [busqueda, setBusqueda] = useState("");
+  const [, setPage] = useState<number>(1);
   const getPlanetas = () => {
     service
       .getPlanetas()
@@ -20,8 +22,19 @@ const Planetas = () => {
 
   return (
     <main className="planeta-page">
+       <div className="controls-inner">
+          <Buscador busqueda={busqueda} setBusqueda={setBusqueda} setPage={setPage}/>
+        </div>
       <div className="planetas list">
-        {planetas.map((p) => (
+        {planetas
+          .filter((p) => {
+            const q = busqueda.trim().toLowerCase();
+            if (!q) return true;
+            const name = (p.name || "").toLowerCase();
+            const desc = (p.description || "").toLowerCase();
+            return name.includes(q) || desc.includes(q);
+          })
+          .map((p) => (
           <article key={p.id} className="contenedor banner">
             <div
               className="imagen"

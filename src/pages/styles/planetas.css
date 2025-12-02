@@ -8,7 +8,7 @@
   --card-width: 350px;
   --card-gap: 26px;
   --card-radius: 26px;
-  --banner-height: 240px;
+  --banner-height: 320px;
 }
 .planeta-page{
   min-height:100vh;
@@ -42,13 +42,27 @@
   box-shadow: 0 10px 30px rgba(2,6,23,0.6);
   height: var(--banner-height);
   min-height: var(--banner-height);
+  /* entry animation */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: bannerIn 520ms cubic-bezier(.22,.9,.36,1) forwards;
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
+/* stagger the entrance slightly for visual rhythm */
+.planetas.list .banner:nth-child(1){ animation-delay: 0.04s; }
+.planetas.list .banner:nth-child(2){ animation-delay: 0.10s; }
+.planetas.list .banner:nth-child(3){ animation-delay: 0.16s; }
+.planetas.list .banner:nth-child(4){ animation-delay: 0.22s; }
+.planetas.list .banner:nth-child(5){ animation-delay: 0.28s; }
+.planetas.list .banner:nth-child(n+6){ animation-delay: 0.34s; }
+
 .imagen{
-  flex: 0 0 480px;
+  flex: 0 0 45%;
+  min-width: 160px;
   height: 100%;
   /* make images a bit larger and more prominent */
-  background-size: 98% auto;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-color: rgba(8,6,18,0.6);
@@ -56,6 +70,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.banner:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px rgba(2,6,23,0.7); }
 
 .imagen img{
   width:100%;
@@ -120,21 +136,67 @@
   cursor: pointer;
   font-weight:700;
   box-shadow: 0 6px 18px rgba(255,78,80,0.12);
+  transition: transform 220ms cubic-bezier(.22,.9,.36,1), box-shadow 220ms ease, opacity 180ms ease;
+  will-change: transform;
 }
 
-.btn-cta:hover{ transform: translateY(-3px); }
-
-/* Responsive: stack image above info on small screens */
-@media (max-width: 900px){
-  .banner{ flex-direction: column; }
-  .imagen{ flex: 0 0 auto; width:100%; height:280px; }
-  .Informacion.panel{ padding: 18px; }
-  .title{ font-size: 1.25rem; }
+.btn-cta:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 30px rgba(255,78,80,0.18); }
+.btn-cta:active{ transform: translateY(-2px) scale(0.995); }
+.btn-cta:focus{ outline: 3px solid rgba(0,234,255,0.12); outline-offset: 4px; }
+/* Keyframes */
+@keyframes bannerIn{
+  from{ opacity: 0; transform: translateY(10px); }
+  to{ opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 420px){
-  .imagen{ height:180px; }
-  .desc{ max-height: 5rem; }
-  .panel-inner{ padding-right: 0; }
+/* Force controls to always appear above the planets list (single column order) */
+.planeta-page{
+  display: flex;
+  flex-direction: column;
+}
+.planeta-page > .controls-inner{ order: 0; z-index: 5; width: 100%; }
+.planeta-page > .planetas.list{ order: 1; width: 100%; }
+
+/* Responsive card appearance: image on top, info below (mobile) */
+@media (max-width: 900px) {
+  .planetas.list { grid-template-columns: 1fr; padding: 18px; }
+
+  .banner {
+    flex-direction: column;
+    border-radius: 18px;
+    overflow: hidden;
+    /* aumentar altura en tablet para mayor presencia visual */
+    /* elevamos más la altura como solicitaste */
+    min-height: 720px;
+  }
+
+  .imagen{
+    flex: none;
+    width: 100%;
+    height: 420px;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .Informacion.panel{
+    padding: 24px;
+    border-radius: 0 0 18px 18px;
+    min-height: 320px;
+  }
+
+  .panel-inner{ height: auto; gap: 8px; }
+
+  .meta{ width:100%; justify-content: space-between; }
+  .btn-cta{ margin-left: 0; }
 }
 
+@media (max-width: 420px) {
+  /* mobile: aumentar ligeramente la altura para que la tarjeta respire en móviles */
+  .banner{ min-height: 480px; }
+  .imagen{ height: 260px; }
+  .title{ font-size: 1.05rem; }
+  .desc{ font-size: 0.95rem; }
+  .Informacion.panel{ min-height: 220px; padding: 14px; }
+  .planetas.list { padding: 12px; }
+}

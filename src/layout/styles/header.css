@@ -43,49 +43,68 @@ header{
     padding: 6px 8px;
 }
 
-.navlist{
+/* Mejoras para la lista de navegación */
+ul.navlist{
     display: flex;
-    gap: 28px;
+    gap: 20px;
     align-items: center;
     justify-self: end; /* mover la lista hacia la derecha */
+    list-style: none; /* reset */
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
 }
 
+ul.navlist li{list-style:none}
+
 .navlist a{
-    color: var(--text);
+    color: rgba(245,247,250,0.98);
     margin-left: 0; /* gap handles spacing */
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     text-transform: none;
-    letter-spacing: 0.6px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    letter-spacing: 0.8px;
+    padding: 10px 14px;
+    border-radius: 999px; /* pill */
     position: relative;
-    transition: color .18s ease, transform .12s ease, background .12s ease;
+    display: inline-block;
+    transition: color .18s ease, transform .16s cubic-bezier(.2,.9,.3,1), background .18s ease, box-shadow .18s ease, letter-spacing .22s ease;
+    backface-visibility: hidden;
 }
 
 .navlist a::after{
     content: '';
     position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 8px;
+    left: 12px;
+    right: 12px;
+    bottom: 6px;
     height: 3px;
-    background: linear-gradient(90deg,var(--accent),var(--accent-2));
+    background: linear-gradient(90deg,#ffb703,#fb8500);
     border-radius: 6px;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform .28s ease, opacity .18s ease;
+    transition: transform .28s cubic-bezier(.2,.9,.3,1), opacity .18s ease;
     opacity: 0;
 }
 
 .navlist a:hover{
-    color: var(--accent);
-    background: rgba(255,255,255,0.02);
-    transform: translateY(-2px);
+    color: #fff;
+    background: linear-gradient(90deg, rgba(255,183,3,0.08), rgba(251,133,0,0.06));
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(251,133,0,0.06), 0 2px 6px rgba(0,0,0,0.25);
+    letter-spacing: 1.8px;
+    text-shadow: 0 2px 14px rgba(255,140,25,0.08);
 }
 .navlist a:hover::after{transform: scaleX(1);opacity:1}
+.navlist a:hover::after{transform: scaleX(1);opacity:1}
 
-.navlist a:focus-visible{outline:none;box-shadow:0 0 0 6px rgba(0,234,255,0.06);}
+.navlist a:focus-visible{outline:none;box-shadow:0 0 0 6px rgba(255,183,3,0.08);}
+
+/* Estado activo persistente (ej. enlace de la página actual) */
+.navlist a.active{color:#ffd27a;background:linear-gradient(90deg, rgba(255,210,122,0.04), transparent);}
+.navlist a.active::after{transform:scaleX(1);opacity:1}
+
+/* Opcional: variante para menú desplegable en móvil (se puede togglear con JS) */
+.navlist.mobile-open{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:none}
 
 #menu-icon{
     color: #eaffff;
@@ -108,4 +127,74 @@ header{
   .logo{font-size:1rem}
 }
 
+/* Mejoras específicas para el menú móvil cuando se abre (añadir la clase `mobile-open` vía JS) */
+@media (max-width:900px){
+    /* Panel móvil: overlay full-screen azul (remueve cualquier fondo amarillo) */
+    ul.navlist.mobile-open{
+        position: fixed;
+        inset: 0;
+        z-index: 1400;
+        display: flex !important;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        background: linear-gradient(180deg, #04263b 0%, #063f6f 60%, #02263b 100%);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        /* animación del panel al abrir */
+        animation: panelPop .34s cubic-bezier(.22,1,.36,1) both;
+        transform-origin: center;
+    }
 
+    /* Asegurar que no quede ningún overlay viejo visible */
+    ul.navlist.mobile-open::before{display:none}
+
+    ul.navlist.mobile-open li{width:100%;display:flex;justify-content:center}
+
+    ul.navlist.mobile-open a{
+        width:100%;
+        max-width:460px;
+        padding: 16px 22px;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 999px;
+        background: transparent;
+        color: #eaf6ff;
+        font-weight:800;
+        transition: transform .16s cubic-bezier(.2,.9,.3,1), color .12s ease, text-shadow .14s ease;
+        opacity: 0;
+        transform: translateY(8px) scale(.98) rotateX(8deg);
+        /* nueva animación: "pop" (scale + rotateX + fade) */
+        animation: menuPop .42s cubic-bezier(.22,1,.36,1) both;
+        transform-origin: center top;
+    }
+
+    ul.navlist.mobile-open a:hover{transform:translateY(-4px);color:#ffffff;text-shadow:0 4px 18px rgba(5,110,255,0.12)}
+
+    /* Separador mayor para mejor legibilidad */
+    ul.navlist.mobile-open a + a{margin-top:12px}
+/* nueva animación para los items del menú: pop (fade + scale + rotateX) */
+@keyframes menuPop{
+    0%{opacity:0;transform:translateY(10px) scale(.96) rotateX(12deg);filter:blur(2px)}
+    60%{opacity:1;transform:translateY(-4px) scale(1.02) rotateX(-2deg);filter:blur(0)}
+    100%{opacity:1;transform:translateY(0) scale(1) rotateX(0);filter:blur(0)}
+}
+
+/* animación para el panel overlay completo (entrada sutil) */
+@keyframes panelPop{
+    0%{opacity:0;transform:scale(.985) translateY(-6px)}
+    60%{opacity:1;transform:scale(1.01) translateY(2px)}
+    100%{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* Stagger: aplicar delay según índice (mantener el efecto escalonado) */
+ul.navlist.mobile-open li:nth-child(1) a{animation-delay:.06s}
+ul.navlist.mobile-open li:nth-child(2) a{animation-delay:.12s}
+ul.navlist.mobile-open li:nth-child(3) a{animation-delay:.18s}
+ul.navlist.mobile-open li:nth-child(4) a{animation-delay:.24s}
+
+    /* Estilo para icono de menú cuando esté activo */
+    #menu-icon.menu-open{transform:rotate(90deg);opacity:0.95}
+}

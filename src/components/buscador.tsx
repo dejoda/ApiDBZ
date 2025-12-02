@@ -9,7 +9,7 @@ interface BuscadorProps {
 const Buscador: React.FC<BuscadorProps> = ({ busqueda, setBusqueda, setPage }) => {
   return (
     <div className="search-left">
-      <label htmlFor="search-input" className="sr-only">Buscar personaje</label>
+      <label htmlFor="search-input" className="sr-only">Buscar</label>
 
       <div className="search-box modern" role="search">
         <span className="search-icon" aria-hidden>🔎</span>
@@ -17,13 +17,13 @@ const Buscador: React.FC<BuscadorProps> = ({ busqueda, setBusqueda, setPage }) =
         <input
           id="search-input"
           type="text"
-          placeholder="Buscar personaje..."
+          placeholder="Buscar..."
           value={busqueda}
           onChange={(e) => {
             setBusqueda(e.target.value);
             setPage(1);
           }}
-          aria-label="Buscar personaje"
+          aria-label="Buscar"
         />
 
         {busqueda && (
