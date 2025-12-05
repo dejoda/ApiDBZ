@@ -147,3 +147,28 @@ html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0}
   .cards-grid{grid-template-columns:1fr;padding:20px}
   .card-modern-img{height:250px}
 }
+
+/* ID badge on character cards */
+.card-badge{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+  color: #111;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+  z-index: 6;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width:640px){
+  .card-badge{
+    top: 8px;
+    left: 8px;
+    padding: 4px 8px;
+    font-size: 0.78rem;
+  }
+}

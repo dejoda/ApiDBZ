@@ -92,9 +92,10 @@ const Personajes = () => {
             const scene = escenarios[idIndex % escenarios.length];
             return (
               <article key={per.id} className="card-modern">
-                <div className="card-modern-img" style={{ backgroundImage: `url('${scene}')` }}>
-                  <img src={per.image} alt={per.name} />
-                </div>
+                  <div className="card-modern-img" style={{ backgroundImage: `url('${scene}')` }}>
+                    <span className="card-badge">#{per.id}</span>
+                    <img src={per.image} alt={per.name} />
+                  </div>
 
                 <div className="card-modern-body">
                   <h3 className="card-title">{per.name}</h3>
