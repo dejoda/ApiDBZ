@@ -43,6 +43,24 @@ header{
     padding: 6px 8px;
 }
 
+/* Animación sutil en hover/focus para el logo (no debe cambiar layout) */
+.logo{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform .18s cubic-bezier(.2,.9,.3,1), text-shadow .18s ease, opacity .16s ease;
+    will-change: transform, opacity;
+}
+
+.logo:hover, .logo:focus-visible{
+    transform: translateY(-3px) scale(1.01);
+    text-shadow: 0 10px 26px rgba(0,0,0,0.28);
+    opacity: 0.98;
+}
+
+.logo:focus-visible{outline: none; box-shadow: 0 0 0 6px rgba(0,234,255,0.06); border-radius: 6px}
+
 /* Mejoras para la lista de navegación */
 ul.navlist{
     display: flex;
@@ -67,7 +85,9 @@ ul.navlist li{list-style:none}
     border-radius: 999px; /* pill */
     position: relative;
     display: inline-block;
+    box-sizing: border-box;
     transition: color .18s ease, transform .16s cubic-bezier(.2,.9,.3,1), background .18s ease, box-shadow .18s ease, letter-spacing .22s ease;
+    will-change: transform, opacity;
     backface-visibility: hidden;
 }
 
@@ -89,12 +109,12 @@ ul.navlist li{list-style:none}
 .navlist a:hover{
     color: #fff;
     background: linear-gradient(90deg, rgba(255,183,3,0.08), rgba(251,133,0,0.06));
-    transform: translateY(-4px) scale(1.02);
+    /* mover visualmente sin cambiar el ancho del elemento */
+    transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(251,133,0,0.06), 0 2px 6px rgba(0,0,0,0.25);
-    letter-spacing: 1.8px;
+    /* evitar cambiar letter-spacing para que no se modifique el ancho y no empuje otros elementos */
     text-shadow: 0 2px 14px rgba(255,140,25,0.08);
 }
-.navlist a:hover::after{transform: scaleX(1);opacity:1}
 .navlist a:hover::after{transform: scaleX(1);opacity:1}
 
 .navlist a:focus-visible{outline:none;box-shadow:0 0 0 6px rgba(255,183,3,0.08);}

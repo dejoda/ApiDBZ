@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import "./App.css";
 import Header from "./layout/header"
+import Footer from "./layout/footer"
 import "../node_modules/boxicons/css/boxicons.min.css";
 import "../node_modules/remixicon/fonts/remixicon.css";
 import { useEffect } from "react";
@@ -17,6 +18,7 @@ function App() {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 }

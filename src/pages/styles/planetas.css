@@ -200,3 +200,111 @@
   .Informacion.panel{ min-height: 220px; padding: 14px; }
   .planetas.list { padding: 12px; }
 }
+
+/* Modal styles para descripción completa */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,15,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+.modal-card{
+  width: 100%;
+  max-width: 980px;
+  background: linear-gradient(180deg, rgba(24,16,34,0.98), rgba(10,8,18,0.96));
+  border-radius: 12px;
+  box-shadow: 0 18px 60px rgba(2,6,23,0.7);
+  color: #fff;
+  overflow: hidden;
+  position: relative; /* necesario para posicionar la X de cierre correctamente */
+}
+.modal-close{
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor: pointer;
+  z-index: 11000;
+  transition: transform .12s ease, background .12s ease;
+}
+.modal-close:hover{ transform: scale(1.05); background: rgba(255,255,255,0.07); }
+
+/* Responsividad para la X */
+@media (max-width: 800px){
+  .modal-close{ right: 12px; top: 10px; width:36px; height:36px; font-size:18px; }
+}
+@media (max-width: 420px){
+  .modal-close{ right: 8px; top: 8px; width:32px; height:32px; font-size:16px; }
+}
+.modal-body{
+  display: flex;
+  gap: 18px;
+  padding: 28px;
+  align-items: flex-start;
+}
+.modal-img{ flex: 0 0 360px; border-radius:8px; overflow:hidden; background:#000 }
+.modal-img img{ width:100%; height:100%; object-fit:cover; display:block }
+.modal-content{ flex:1 1 auto }
+.modal-content h2{ margin:0 0 8px 0 }
+.modal-content p{ color: rgba(255,255,255,0.92); line-height:1.6 }
+
+@media (max-width: 800px){
+  .modal-body{ flex-direction: column }
+  .modal-img{ width:100%; flex-basis:auto }
+}
+
+/* Diseño para el estado dentro del modal */
+.modal-status{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:14px;
+}
+.modal-status .status-label{
+  color: rgba(255,255,255,0.85);
+  font-weight:700;
+  min-width:70px;
+}
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:0.95rem;
+  color:#fff;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+.status-pill.habitable{ background: linear-gradient(90deg,#16a34a,#059669); }
+.status-pill.destroyed{ background: linear-gradient(90deg,#ef4444,#f97316); }
+.status-pill::before{
+  content: '';
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25) inset;
+}
+.status-pill.habitable::before{ background: #34d399; }
+.status-pill.destroyed::before{ background: #ffb4ab; }
+
+@media (max-width: 520px){
+  .modal-status{ gap:10px }
+  .modal-status .status-label{ min-width:56px; font-size:0.95rem }
+  .status-pill{ padding:6px 10px; font-size:0.9rem }
+}

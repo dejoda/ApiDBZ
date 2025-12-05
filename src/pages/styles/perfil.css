@@ -1,3 +1,7 @@
+body{
+   background: radial-gradient(circle at 25% 20%, #5f0aaf, var(--bg-1) 40%, var(--bg-2) 50%, #3b1c42);
+}
+
 :root{
   --bg-1: #00111c;
   --bg-2: #000610;

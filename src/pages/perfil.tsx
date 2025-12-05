@@ -11,7 +11,9 @@ export default function Perfil() {
   const { id } = useParams(); // ← recibimos el id de la URL
   const [personaje, setPersonaje] = useState<iguerreros | null>(null);
   const [carouselIndex, setCarouselIndex] = useState<number>(0);
-  const [activeTab, setActiveTab] = useState<"descripcion" | "planeta" | "transformaciones">("descripcion");
+  const [activeTab, setActiveTab] = useState<
+    "descripcion" | "planeta" | "transformaciones"
+  >("descripcion");
 
   useEffect(() => {
     const getData = async () => {
@@ -28,11 +30,11 @@ export default function Perfil() {
   // Robust parsing for Ki values that may contain thousands separators or suffixes
   const parseSmartNumber = (raw?: string | number | null): number => {
     if (raw == null) return NaN;
-    if (typeof raw === 'number') return raw;
+    if (typeof raw === "number") return raw;
     const s = String(raw).trim();
     if (!s) return NaN;
     // try direct conversion first
-    const direct = Number(s.replace(/\s+/g, ''));
+    const direct = Number(s.replace(/\s+/g, ""));
     if (!Number.isNaN(direct)) return direct;
 
     // handle suffixes like Million, Billion, Septillion, etc.
@@ -49,25 +51,25 @@ export default function Perfil() {
 
     // extract numeric fragment
     const numMatch = s.match(/[\d.,]+/);
-    const numPart = numMatch ? numMatch[0] : '';
+    const numPart = numMatch ? numMatch[0] : "";
     let cleaned = numPart;
     if (!cleaned) return NaN;
 
     // If both dot and comma exist, assume dot thousands and comma decimal (e.g. 1.234,56)
-    if (cleaned.indexOf('.') > -1 && cleaned.indexOf(',') > -1) {
-      cleaned = cleaned.replace(/\./g, '').replace(',', '.');
-    } else if (cleaned.indexOf('.') > -1 && /\.(?=\d{3})/.test(cleaned)) {
+    if (cleaned.indexOf(".") > -1 && cleaned.indexOf(",") > -1) {
+      cleaned = cleaned.replace(/\./g, "").replace(",", ".");
+    } else if (cleaned.indexOf(".") > -1 && /\.(?=\d{3})/.test(cleaned)) {
       // dots used as thousand separators like 54.000.000
-      cleaned = cleaned.replace(/\./g, '');
+      cleaned = cleaned.replace(/\./g, "");
     } else {
       // remove commas as thousands separators
-      cleaned = cleaned.replace(/,/g, '');
+      cleaned = cleaned.replace(/,/g, "");
     }
 
     const base = Number(cleaned);
     if (!Number.isNaN(base)) {
       // detect suffix
-      const suffix = s.replace(numPart, '').toLowerCase();
+      const suffix = s.replace(numPart, "").toLowerCase();
       for (const key in suffixMap) {
         if (suffix.includes(key)) return base * suffixMap[key];
       }
@@ -79,7 +81,12 @@ export default function Perfil() {
   const kiValRaw = parseSmartNumber(personaje.ki);
   const maxKiRaw = parseSmartNumber(personaje.maxKi as any);
   const kiVal = Number.isFinite(kiValRaw) ? kiValRaw : 0;
-  const maxKiVal = Number.isFinite(maxKiRaw) && maxKiRaw > 0 ? maxKiRaw : (kiVal > 0 ? kiVal : 100);
+  const maxKiVal =
+    Number.isFinite(maxKiRaw) && maxKiRaw > 0
+      ? maxKiRaw
+      : kiVal > 0
+      ? kiVal
+      : 100;
   const kiPercent = Math.round((kiVal / maxKiVal) * 100);
 
   return (
@@ -94,7 +101,11 @@ export default function Perfil() {
           </div>
         </div>
 
-        <nav className="perfil-tabs" role="tablist" aria-label="Secciones del perfil">
+        <nav
+          className="perfil-tabs"
+          role="tablist"
+          aria-label="Secciones del perfil"
+        >
           <button
             className={`tab-btn ${activeTab === "descripcion" ? "active" : ""}`}
             onClick={() => setActiveTab("descripcion")}
@@ -112,7 +123,9 @@ export default function Perfil() {
             Planeta
           </button>
           <button
-            className={`tab-btn ${activeTab === "transformaciones" ? "active" : ""}`}
+            className={`tab-btn ${
+              activeTab === "transformaciones" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("transformaciones")}
             role="tab"
             aria-selected={activeTab === "transformaciones"}
@@ -124,7 +137,11 @@ export default function Perfil() {
         <div className="perfil-grid">
           <aside className="perfil-left">
             <div className="avatar-wrap">
-              <img src={personaje.image} alt={personaje.name} className="avatar" />
+              <img
+                src={personaje.image}
+                alt={personaje.name}
+                className="avatar"
+              />
             </div>
 
             <div className="stats-card">
@@ -132,9 +149,14 @@ export default function Perfil() {
               <div className="stat-row">
                 <div className="stat-label">Ki</div>
                 <div className="stat-bar">
-                  <div className="stat-fill" style={{ width: `${kiPercent}%` }} />
+                  <div
+                    className="stat-fill"
+                    style={{ width: `${kiPercent}%` }}
+                  />
                 </div>
-                <div className="stat-value">{personaje.ki} / {personaje.maxKi || "—"}</div>
+                <div className="stat-value">
+                  {personaje.ki} / {personaje.maxKi || "—"}
+                </div>
               </div>
             </div>
           </aside>
@@ -151,10 +173,16 @@ export default function Perfil() {
               <div className="glass-card tab-panel planet-card">
                 <h2>Planeta de origen</h2>
                 <div className="planet-inner">
-                  <img src={personaje.originPlanet.image} alt={personaje.originPlanet.name} />
+                  <img
+                    src={personaje.originPlanet.image}
+                    alt={personaje.originPlanet.name}
+                  />
                   <div className="planet-info">
                     <h3>{personaje.originPlanet.name}</h3>
-                    <p><strong>Destruido:</strong> {personaje.originPlanet.isDestroyed ? "Sí" : "No"}</p>
+                    <p>
+                      <strong>Destruido:</strong>{" "}
+                      {personaje.originPlanet.isDestroyed ? "Sí" : "No"}
+                    </p>
                     <p>{personaje.originPlanet.description}</p>
                   </div>
                 </div>
@@ -164,23 +192,46 @@ export default function Perfil() {
             {activeTab === "transformaciones" && (
               <div className="glass-card tab-panel">
                 <h2>Transformaciones</h2>
-                {personaje.transformations && personaje.transformations.length > 0 ? (
+                {personaje.transformations &&
+                personaje.transformations.length > 0 ? (
                   <div className="carousel">
                     <button
                       className="carousel-btn left"
-                      onClick={() => setCarouselIndex((i) => (i - 1 + personaje.transformations.length) % personaje.transformations.length)}
+                      onClick={() =>
+                        setCarouselIndex(
+                          (i) =>
+                            (i - 1 + personaje.transformations.length) %
+                            personaje.transformations.length
+                        )
+                      }
                       aria-label="Anterior"
                       title="Anterior"
                     >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15 18l-6-6 6-6"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </button>
 
                     <div className="carousel-viewport">
                       <div
                         className="carousel-track"
-                        style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
+                        style={{
+                          transform: `translateX(-${carouselIndex * 100}%)`,
+                        }}
                       >
                         {personaje.transformations.map((t) => (
                           <div className="carousel-item" key={t.id}>
@@ -189,15 +240,18 @@ export default function Perfil() {
                                 src={t.image}
                                 alt={t.name}
                                 className="transform-img-full"
-                                
                               />
                               <div className="transform-caption">
                                 <h4>{t.name}</h4>
-                                <p><strong>Ki:</strong> {t.ki}</p>
+                                <p>
+                                  <strong>Ki:</strong> {t.ki}
+                                </p>
                               </div>
                               <div className="transform-body">
                                 <h4>{t.name}</h4>
-                                <p><strong>Ki:</strong> {t.ki}</p>
+                                <p>
+                                  <strong>Ki:</strong> {t.ki}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -207,12 +261,30 @@ export default function Perfil() {
 
                     <button
                       className="carousel-btn right"
-                      onClick={() => setCarouselIndex((i) => (i + 1) % personaje.transformations.length)}
+                      onClick={() =>
+                        setCarouselIndex(
+                          (i) => (i + 1) % personaje.transformations.length
+                        )
+                      }
                       aria-label="Siguiente"
                       title="Siguiente"
                     >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 6l6 6-6 6"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </button>
 
@@ -220,7 +292,9 @@ export default function Perfil() {
                       {personaje.transformations.map((_, idx) => (
                         <button
                           key={idx}
-                          className={`dot ${idx === carouselIndex ? "active" : ""}`}
+                          className={`dot ${
+                            idx === carouselIndex ? "active" : ""
+                          }`}
                           onClick={() => setCarouselIndex(idx)}
                           aria-label={`Ir a transformación ${idx + 1}`}
                         />
