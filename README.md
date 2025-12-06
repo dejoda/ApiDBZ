@@ -1,3 +1,6 @@
+Dependencias 
+npm i react-router axios
+
 #Pantalla #Inicio
 <img width="1887" height="916" alt="image" src="https://github.com/user-attachments/assets/612f9842-df90-4817-b821-fbf7674ce15c" />
 #Pantalla #Personajes
